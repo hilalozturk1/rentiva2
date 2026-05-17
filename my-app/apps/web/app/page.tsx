@@ -1,24 +1,21 @@
+async function getData() {
+  const res = await fetch('http://localhost:3001');
 
-export default function Home() {
+  return res.json();
+}
+
+export default async function Home() {
+  const data = await getData();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <h1 className="text-5xl font-bold text-center sm:text-left">
-          Welcome to{" "}
-          <a
-            href="https://nextjs.org"
-            className="text-blue-600 dark:text-blue-400"
-          >
-            Next.js!
-          </a>
-        </h1>
-        <p className="mt-4 text-2xl text-center sm:text-left">
-          Get started by editing{" "}
-          <code className="bg-gray-100 dark:bg-gray-800 rounded px-3 py-1 text-sm font-mono">
-            app/page.tsx
-          </code>
-        </p>  
-      </main>
-    </div>
+    <main className="p-10">
+      <h1 className="text-3xl font-bold">
+        Next + Nest Monorepo
+      </h1>
+
+      <pre className="mt-6">
+        {JSON.stringify(data, null, 2)}
+      </pre>
+    </main>
   );
 }
